@@ -1,0 +1,26 @@
+{
+  "name": "com.eren.multiplayer",
+  "version": "0.0.1",
+  "displayName": "Steam-Multiplayer-Networking-for-Unity",
+  "description": "A Steam Networking Multiplayer Solution for Unity Netcode for Gameobjects. Works as a standalone project for Unity.",
+  "unity": "2022.2",
+  "unityRelease": "6f1",
+  "documentationUrl": "https://github.com/ErencanPelin/Steam-Multiplayer-Networking-for-Unity",
+  "changelogUrl": "https://github.com/ErencanPelin/Steam-Multiplayer-Networking-for-Unity",
+  "licensesUrl": "https://github.com/ErencanPelin/Steam-Multiplayer-Networking-for-Unity",
+  "dependencies": {
+    "com.community.netcode.transport.facepunch": "2.0.0",
+    "com.unity.netcode.gameobjects": "1.2.0"
+  },
+  "keywords": [
+    "multiplayer",
+    "steam",
+    "networking",
+    "netcode",
+    "peer-to-peer"
+  ],
+  "author": {
+    "name": "Erencan Pelin",
+    "email": "erenp.business@gmail.com"
+  }
+}
