@@ -1,4 +1,7 @@
 # Steam Multiplayer Networking for Unity
+
+Authors: [Erencan Pelin](https://github.com/ErencanPelin)
+
 The Simplest drag&drop Networking Multiplayer Solution for Unity. Using Unity Netcode for Gameobjects & Facepunch Steamworks.
 
 ### Useful links:
