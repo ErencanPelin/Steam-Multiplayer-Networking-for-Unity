@@ -10,7 +10,11 @@
   "licensesUrl": "https://github.com/ErencanPelin/Steam-Multiplayer-Networking-for-Unity",
   "dependencies": {
     "com.community.netcode.transport.facepunch": "2.0.0",
-    "com.unity.netcode.gameobjects": "1.2.0"
+    "com.unity.netcode.gameobjects": "1.2.0",
+    "com.unity.collections": "1.2.4",
+    "com.unity.inputsystem": "1.5.1",
+    "com.unity.mathematics": "1.2.6",
+    "com.unity.textmeshpro": "3.0.6"
   },
   "keywords": [
     "multiplayer",
