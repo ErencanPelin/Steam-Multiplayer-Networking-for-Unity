@@ -2,7 +2,10 @@
     "name": "com.eren.multiplayer.editor",
     "rootNamespace": "Multiplayer.Editor",
     "references": [
-        "GUID:58e4fab38b838774187db2997dd58014"
+        "GUID:58e4fab38b838774187db2997dd58014",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:3b8ed52f1b5c64994af4c4e0aa4b6c4b",
+        "GUID:1491147abca9d7d4bb7105af628b223e"
     ],
     "includePlatforms": [
         "Editor"

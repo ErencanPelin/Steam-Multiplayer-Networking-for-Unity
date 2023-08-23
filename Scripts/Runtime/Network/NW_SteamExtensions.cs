@@ -148,7 +148,10 @@ namespace Network.Framework
         public static async Task<Lobby[]> GetLobbiesAsync()
         {
             if (!IsSteamRunning)
+            {
+                Debug.LogWarning("Failed to find lobbies. Steam is not running");
                 return await Task.FromResult(new Lobby[0]);
+            }
 
             return await SteamMatchmaking.LobbyList
                 .WithKeyValue("game", GAME_ID)

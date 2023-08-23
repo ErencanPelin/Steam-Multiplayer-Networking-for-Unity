@@ -61,8 +61,8 @@ namespace Multiplayer.Runtime.UI
         {
             print("Retrieving lobbies");
             var onlineLobbies = await GetLobbies();
+            print($"Finding available lobby: {onlineLobbies.Length}");
             var joinableLobbies = onlineLobbies.Where(a => a.MaxMembers > a.MemberCount) as Lobby[] ?? Array.Empty<Lobby>();
-            print("Finding available lobby");
             //find available lobby
             if (joinableLobbies.Any())
             {
@@ -72,6 +72,7 @@ namespace Multiplayer.Runtime.UI
             }
             else //no existing lobbies, create our own public lobby
             {
+                print("no lobbies found, creating new lobby instead");
                 await NW_NetworkManager.Instance.StartSteamHost(new NW_SteamExtensions.LobbyConfig
                 {
                     name = $"Lobby {Guid.NewGuid()}",
@@ -108,11 +109,11 @@ namespace Multiplayer.Runtime.UI
 
         private async Task<Lobby[]> GetLobbies()
         {
+            return await NW_SteamExtensions.GetLobbiesAsync() ?? Array.Empty<Lobby>();
+            
             //refresh lobby list
             /*for (int i = 0; i < m_LobbyRect.childCount; i++)
                 Destroy(m_LobbyRect.GetChild(i).gameObject);*/
-
-            return await NW_SteamExtensions.GetLobbiesAsync() ?? Array.Empty<Lobby>();
 
             //create lobby list in UI
             /*foreach (var lobby in lobbies)

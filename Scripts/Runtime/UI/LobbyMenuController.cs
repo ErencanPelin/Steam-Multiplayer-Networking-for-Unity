@@ -10,16 +10,16 @@ namespace Multiplayer.Runtime.UI
     public class LobbyMenuController : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private Button m_MapBtn;
-        [SerializeField] private Button m_ModeBtn;
-        [SerializeField] private Button m_SettingsBtn;
+      //  [SerializeField] private Button m_MapBtn;
+     //   [SerializeField] private Button m_ModeBtn;
+     //   [SerializeField] private Button m_SettingsBtn;
         [SerializeField] private Button m_ReturnHomeBtn;
         [SerializeField] private Button m_CopyLinkBtn;
         [SerializeField] private Button m_StartGameBtn;
 
-        [Header("Members")]
-        [SerializeField] private Transform m_MemberRect;
-        [SerializeField] private UIMember m_MemberPrfeab;
+    //    [Header("Members")]
+    //    [SerializeField] private Transform m_MemberRect;
+    //    [SerializeField] private UIMember m_MemberPrfeab;
 
         private void Start()
         {
@@ -70,9 +70,9 @@ namespace Multiplayer.Runtime.UI
         {
             var isActive = NetworkManager.Singleton.IsServer;
 
-            m_MapBtn.gameObject.SetActive(isActive);
-            m_ModeBtn.gameObject.SetActive(isActive);
-            m_SettingsBtn.gameObject.SetActive(isActive);
+        //    m_MapBtn.gameObject.SetActive(isActive);
+        //    m_ModeBtn.gameObject.SetActive(isActive);
+        //    m_SettingsBtn.gameObject.SetActive(isActive);
             m_StartGameBtn.gameObject.SetActive(isActive);
             m_CopyLinkBtn.gameObject.SetActive(isActive);
             m_CopyLinkBtn.gameObject.SetActive(isActive);
@@ -82,20 +82,20 @@ namespace Multiplayer.Runtime.UI
             if (!lobby.HasValue)
                 return;
 
-            for (var i = 0; i < m_MemberRect.childCount; i++)
-                Destroy(m_MemberRect.GetChild(i).gameObject); // Delete old members!
+            /*for (var i = 0; i < m_MemberRect.childCount; i++)
+                Destroy(m_MemberRect.GetChild(i).gameObject); // Delete old members!*/
 
             if (lobby.Value.Members == null || lobby.Value.MemberCount == 0)
                 return;
 
-            foreach (var member in lobby.Value.Members)
-                CreateUIMember(member); // Spawn new members!
+            /*foreach (var member in lobby.Value.Members)
+                CreateUIMember(member); // Spawn new members!*/
 
-            void CreateUIMember(Friend friend)
+            /*void CreateUIMember(Friend friend)
             {
                 var member = Instantiate(m_MemberPrfeab, m_MemberRect);
                 member.Init(friend);
-            }
+            }*/
         }
 
         private void CopyLink()
