@@ -10,7 +10,7 @@ A Steam Networking Multiplayer Solution for Unity Netcode for Gameobjects. Works
 # Documentation
 ## Dependencies
 The following packages are required. You may install them via the `Package Manager` in `Window > Package Manager`
-* `com.community.netcode.transport.facepunch` : `2.0.0`
+* `https://github.com/Unity-Technologies/multiplayer-community-contributions.git?path=/Transports/com.community.netcode.transport.facepunch` : `2.0.0`
 * `com.unity.netcode.gameobjects` : `1.2.0`
 * [Steam App](https://store.steampowered.com/about/) (needs to be running)
 
