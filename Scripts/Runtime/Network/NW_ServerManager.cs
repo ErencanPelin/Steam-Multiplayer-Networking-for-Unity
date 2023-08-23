@@ -245,13 +245,16 @@ namespace Network.Framework
 
         private void HandleNetworkReadied()
         {
+            print("network preparing");
             if (!NetworkManager.Singleton.IsServer)
                 return;
 
+            print("network loaded!");
             NW_NetworkManager.OnClientDisconnectRequested += HandleUserDisconnectRequested;
             NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnect;
             NW_NetworkManager.OnClientSceneChanged += HandleClientSceneChanged;
 
+            print("Switching scene");
             portal.LobbyScene.TryLoadNetworkScene();
 
             if (NetworkManager.Singleton.IsHost)

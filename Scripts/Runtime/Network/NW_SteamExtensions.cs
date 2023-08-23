@@ -11,6 +11,8 @@ namespace Network.Framework
 {
     public static class NW_SteamExtensions
     {
+        public static bool IsSteamRunning => SteamClient.IsValid;
+        public const string GAME_ID = "game-example"; // Unique identifier for matchmaking so we don't match up with other Spacewar games
         public static event UnityAction<float> OnItemDownloading;
 
         public enum OverlayType : byte
@@ -40,11 +42,7 @@ namespace Network.Framework
             public LobbyVisibility visibility;
             public byte maxMembers;
         }
-
-        public static bool IsSteamRunning => SteamClient.IsValid;
-
-        public const string GAME_ID = "game-example"; // Unique identifier for matchmaking so we don't match up with other Spacewar games
-
+        
         /// <summary>
         /// Set visibility for lobby
         /// </summary>

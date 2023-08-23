@@ -1,6 +1,7 @@
 using System;
 using Network.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,10 +50,36 @@ namespace Multiplayer.Runtime.UI
             createServerBtn.onClick.AddListener(CreateServer);
             joinServerField.onEndEdit.AddListener(JoinServer);
             createPrivate.onValueChanged.AddListener(UpdateUI);
+            findOnlineGame.onClick.AddListener(FindOnlineLobby);
             
             UpdateUI(false);
           //  m_RefreshLobbies.onClick.AddListener(async() => await RefreshLobbies());
          //   m_CreateDedicatedServerBtn.onClick.AddListener(CreateDedicatedServer);
+        }
+
+        private async void FindOnlineLobby()
+        {
+            print("Retrieving lobbies");
+            var onlineLobbies = await GetLobbies();
+            var joinableLobbies = onlineLobbies.Where(a => a.MaxMembers > a.MemberCount) as Lobby[] ?? Array.Empty<Lobby>();
+            print("Finding available lobby");
+            //find available lobby
+            if (joinableLobbies.Any())
+            {
+                var lobby = joinableLobbies.First();
+                print($"Lobby found! Joining {lobby.Id}");
+                NW_ClientManager.Instance.StartSteamClient(lobby.Owner.Id);
+            }
+            else //no existing lobbies, create our own public lobby
+            {
+                await NW_NetworkManager.Instance.StartSteamHost(new NW_SteamExtensions.LobbyConfig
+                {
+                    name = $"Lobby {Guid.NewGuid()}",
+                    joinable = true,
+                    maxMembers = 30,
+                    visibility = NW_SteamExtensions.LobbyVisibility.Public
+                });
+            }
         }
 
         private void OnDestroy()
@@ -60,8 +87,9 @@ namespace Multiplayer.Runtime.UI
             createServerBtn.onClick.RemoveAllListeners();
             joinServerField.onEndEdit.RemoveAllListeners();
             createPrivate.onValueChanged.RemoveAllListeners();
-          //  m_RefreshLobbies.onClick.RemoveAllListeners();
-         //   m_CreateDedicatedServerBtn.onClick.RemoveAllListeners();
+            findOnlineGame.onClick.RemoveAllListeners();
+            //  m_RefreshLobbies.onClick.RemoveAllListeners();
+            //   m_CreateDedicatedServerBtn.onClick.RemoveAllListeners();
         }
 
         private void UpdateUI(bool createPrivateLobby)
@@ -78,15 +106,13 @@ namespace Multiplayer.Runtime.UI
             findOnlineGame.gameObject.SetActive(!createPrivateLobby);
         }
 
-        private async void OnEnable() => await RefreshLobbies();
-
-        private async Task RefreshLobbies()
+        private async Task<Lobby[]> GetLobbies()
         {
             //refresh lobby list
             /*for (int i = 0; i < m_LobbyRect.childCount; i++)
                 Destroy(m_LobbyRect.GetChild(i).gameObject);*/
 
-            var lobbies = await NW_SteamExtensions.GetLobbiesAsync() ?? Array.Empty<Lobby>();
+            return await NW_SteamExtensions.GetLobbiesAsync() ?? Array.Empty<Lobby>();
 
             //create lobby list in UI
             /*foreach (var lobby in lobbies)
@@ -123,7 +149,7 @@ namespace Multiplayer.Runtime.UI
                     maxMembers = 1; // Need a least one member!
             }
 
-            var lobbyName = $"Lobby {System.Guid.NewGuid()}";
+            var lobbyName = $"Lobby {Guid.NewGuid()}";
 
             if (nameField != null)
                 lobbyName = nameField.text;

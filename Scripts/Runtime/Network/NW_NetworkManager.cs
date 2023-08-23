@@ -248,9 +248,11 @@ namespace Network.Framework
 
         private void HandleClientConnected(ulong clientId)
         {
+            print("client connected!");
             if (clientId != NetworkManager.Singleton.LocalClientId)
                 return;
 
+            print($"client ID: {clientId}");
             OnConnectedCallback();
             NetworkManager.Singleton.SceneManager.OnSceneEvent += HandleSceneEvent;
         }
@@ -269,6 +271,7 @@ namespace Network.Framework
                 OnConnectionCompleted?.Invoke(ConnectStatus.Success);
 
             OnClientReadied?.Invoke();
+            print("Client Ready...");
         }
 
         #endregion
