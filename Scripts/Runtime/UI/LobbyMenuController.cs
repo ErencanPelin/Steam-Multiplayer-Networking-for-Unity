@@ -10,16 +10,16 @@ namespace Multiplayer.Runtime.UI
     public class LobbyMenuController : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] Button m_MapBtn = default;
-        [SerializeField] Button m_ModeBtn = default;
-        [SerializeField] Button m_SettingsBtn = default;
-        [SerializeField] Button m_ReturnHomeBtn = default;
-        [SerializeField] Button m_CopyLinkBtn = default;
-        [SerializeField] Button m_StartGameBtn = default;
+        [SerializeField] private Button m_MapBtn;
+        [SerializeField] private Button m_ModeBtn;
+        [SerializeField] private Button m_SettingsBtn;
+        [SerializeField] private Button m_ReturnHomeBtn;
+        [SerializeField] private Button m_CopyLinkBtn;
+        [SerializeField] private Button m_StartGameBtn;
 
         [Header("Members")]
-        [SerializeField] Transform m_MemberRect = default;
-        [SerializeField] UIMember m_MemberPrfeab = default;
+        [SerializeField] private Transform m_MemberRect;
+        [SerializeField] private UIMember m_MemberPrfeab;
 
         private void Start()
         {
@@ -68,7 +68,7 @@ namespace Multiplayer.Runtime.UI
 
         private void RefreshUI()
         {
-            bool isActive = NetworkManager.Singleton.IsServer;
+            var isActive = NetworkManager.Singleton.IsServer;
 
             m_MapBtn.gameObject.SetActive(isActive);
             m_ModeBtn.gameObject.SetActive(isActive);
@@ -82,7 +82,7 @@ namespace Multiplayer.Runtime.UI
             if (!lobby.HasValue)
                 return;
 
-            for (int i = 0; i < m_MemberRect.childCount; i++)
+            for (var i = 0; i < m_MemberRect.childCount; i++)
                 Destroy(m_MemberRect.GetChild(i).gameObject); // Delete old members!
 
             if (lobby.Value.Members == null || lobby.Value.MemberCount == 0)
