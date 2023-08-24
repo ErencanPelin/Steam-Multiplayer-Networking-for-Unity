@@ -31,3 +31,5 @@ Install the packages above from the Unity Package Manager:
 2. Copy & paste the above github link and press **"Add"**. The package will be downloaded and added to your Unity project. It may take a moment.
 3. For the other packages, Select **"Add Package by name"**, then Cop & Paste the package name and version and press **"Add"**
 
+## Testing
+Steam does not allow 2 of the same user online at the same time, in order to test the solution properly you will need to login to Steam on 2 different accounts, on 2 different computers.
